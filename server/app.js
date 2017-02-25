@@ -1,4 +1,12 @@
-// modules required for the project
+/**
+ * File Name: app.js
+ * Author: Mohammed Juned Ahmed
+ * Student ID: 300833356
+ * Website Name: https://comp308-w17-midterm-300833356.herokuapp.com/
+ * Github Repo: https://github.com/ahmmdd/COMP308-W2017-Midterm-300833356
+ */
+
+ // modules required for the project
 let express = require('express');
 let path = require('path'); // part of node.js core
 let favicon = require('serve-favicon');

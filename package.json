@@ -33,17 +33,17 @@
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git+https://github.com/ahmmdd/COMP308-W2017-Midterm-300833356.git"
   },
   "keywords": [
     "NodeJS",
     "ExpressJS",
     "EJS"
   ],
-  "author": "Tom Tsiliopoulos",
+  "author": "Mohammed Juned Ahmed",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/ahmmdd/COMP308-W2017-Midterm-300833356/issues"
   },
-  "homepage": ""
+  "homepage": "https://github.com/ahmmdd/COMP308-W2017-Midterm-300833356#readme"
 }
