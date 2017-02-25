@@ -10,12 +10,22 @@
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
+let passport = require('passport');
 
 // define the book model
 let book = require('../models/books');
 
+// create a function to check if the user is authenticated
+function requireAuth(req, res, next) {
+  // check if the user is logged in
+  if(!req.isAuthenticated()) {
+    return res.redirect('/login');
+  }
+  next();
+}
+
 /* GET books List page. READ */
-router.get('/', (req, res, next) => {
+router.get('/', requireAuth, (req, res, next) => {
   // find all books in the books collection
   book.find( (err, books) => {
     if (err) {
@@ -24,7 +34,8 @@ router.get('/', (req, res, next) => {
     else {
       res.render('books/index', {
         title: 'Books',
-        books: books
+        books: books,
+        displayName: req.user.displayName
       });
     }
   });
@@ -32,20 +43,20 @@ router.get('/', (req, res, next) => {
 });
 
 //  GET the Book Details page in order to add a new Book
-router.get('/add', (req, res, next) => {
+router.get('/add', requireAuth, (req, res, next) => {
 
     /*****************
      * ADD CODE HERE *
      *****************/
     res.render('books/details',{
       title: "Add a new Book",
-      books: ''
-      /*displayName: req.user.displayName*/
+      books: '',
+      displayName: req.user.displayName
     });
 });
 
 // POST process the Book Details page and create a new Book - CREATE
-router.post('/add', (req, res, next) => {
+router.post('/add', requireAuth, (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
@@ -68,7 +79,7 @@ router.post('/add', (req, res, next) => {
 });
 
 // GET the Book Details page in order to edit an existing Book
-router.get('/:id', (req, res, next) => {
+router.get('/:id', requireAuth, (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
@@ -85,8 +96,8 @@ router.get('/:id', (req, res, next) => {
           // show the book details view
           res.render('books/details', {
               title: 'Book Details',
-              books: books
-              /*displayName: req.user.displayName*/
+              books: books,
+              displayName: req.user.displayName
           });
         }
       });
@@ -97,7 +108,7 @@ router.get('/:id', (req, res, next) => {
 });
 
 // POST - process the information passed from the details form and update the document
-router.post('/:id', (req, res, next) => {
+router.post('/:id', requireAuth, (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
@@ -124,7 +135,7 @@ router.post('/:id', (req, res, next) => {
 });
 
 // GET - process the delete by user id
-router.get('/delete/:id', (req, res, next) => {
+router.get('/delete/:id', requireAuth, (req, res, next) => {
 
     /*****************
      * ADD CODE HERE *
