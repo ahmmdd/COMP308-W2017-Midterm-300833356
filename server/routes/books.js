@@ -99,10 +99,10 @@ router.post('/:id', (req, res, next) => {
 
      let updatedBook = book({
        "_id": id,
-      "title": req.body.title,
-      "price": req.body.price,
-      "author": req.body.author,
-      "genre":req.body.genre
+      "Title": req.body.title,
+      "Price": req.body.price,
+      "Author": req.body.author,
+      "Genre":req.body.genre
     });
 
     book.update({_id: id}, updatedBook, (err) => {
